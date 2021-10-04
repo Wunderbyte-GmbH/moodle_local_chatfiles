@@ -45,16 +45,13 @@ class chatfiles {
      */
     public static function create_chatfile($userid, $conversationid, $filename) {
         global $CFG;
-        //$filename = substr($filename, 0, -16);
         $tempfile = $CFG->dataroot . '/temp/chatfiles/' . $filename;
-        //$members = \core_message\api::get_conversation_members($userid, $conversationid);
         $fs = get_file_storage();
         $context = \context_system::instance();
         $file = array('contextid' => $context->id, 'component' => 'local_chatfiles', 'filearea' => 'chat',
         'itemid' => 0, 'filepath' => '/', 'filename' => $filename, 'author' => $conversationid);
-        $test = $fs->create_file_from_pathname($file, $tempfile);
-         // $url = \moodle_url::make_pluginfile_url($file['contextid'],$file['component'], $file['filearea'], $file['itemid'], $file['filepath'], $file['filename'], false);
-          ///  unlink($tempfile);
+        $fs->create_file_from_pathname($file, $tempfile);
+        unlink($tempfile);
     }
     /**
      * Delete File from temporary Folder to every private user Folder

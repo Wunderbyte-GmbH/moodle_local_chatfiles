@@ -35,7 +35,33 @@ if ( 0 < $_FILES['file']['error'] ) {
     echo 'Error: ' . $_FILES['file']['error'] . '<br>';
 } else {
     $pathparts = pathinfo($_FILES["file"]["name"]);
+
+/*
+    $filepath = $_FILES['myFile']['tmp_name'];
+    $filesize = filesize($filepath);
+    $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
+    $filetype = finfo_file($fileinfo, $filepath);
+    if ($filesize === 0) {
+        die("The file is empty.");
+    }
+    if ($filesize > 3145728) { // 3 MB (1 byte * 1024 * 1024 * 3 (for 3 MB))
+        die("The file is too large");
+    }
+    $allowedtypes = [
+       'image/png' => 'png',
+       'image/jpeg' => 'jpg',
+       'image/jpeg' => 'jpeg',
+       'application/pdf' => 'pdf',
+       'application/zip' => 'zip',
+
+    ];
+    if (!in_array($filetype, array_keys($allowedtypes))) {
+        die("File not allowed.");
+    }*/
     \core\antivirus\manager::scan_file($_FILES["file"]["tmp_name"], $_FILES["file"]["name"], true);
+
+
+
     $filename = $pathparts['filename'].'_'.time().'.'.$pathparts['extension'];
     $dlurl = new moodle_url('/pluginfile.php/1/local_chatfiles/chat/') . $filename . '?forcedownload=1';
     move_uploaded_file($_FILES['file']['tmp_name'], $tempdir . $filename);
