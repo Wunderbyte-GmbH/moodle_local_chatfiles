@@ -14,7 +14,7 @@ define(
             var form_data = new FormData();
             form_data.append('file', file_data);
             $.ajax({
-                url: 'http://localhost/local/chatfiles/ajax.php?sesskey=' + M.cfg.sesskey,
+                url: M.cfg.wwwroot + '/local/chatfiles/ajax.php?sesskey=' + M.cfg.sesskey,
                 dataType: 'text',
                 cache: false,
                 contentType: false,
