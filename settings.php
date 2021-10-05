@@ -27,7 +27,28 @@ defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
     // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
-    if ($ADMIN->fulltree) {
-        // TODO: Define the plugin settings page - {@link https://docs.moodle.org/dev/Admin_settings}.
-    }
+
+        $settings = new admin_settingpage( 'local_chatfiles_settings', 'Chatfiles'); // We ommit the label, so that it does not show the heading.
+        $ADMIN->add('localplugins', new admin_category('local_chatfiles', get_string('pluginname', 'local_chatfiles')));
+        $ADMIN->add('local_chatfiles', $settings);
+    
+
+        $settings->add(new admin_setting_filetypes('chatfiles/filetypes',
+                        new lang_string('defaultacceptedfiletypes', 'chatfiles'),
+                        new lang_string('acceptedfiletypes_help', 'chatfiles'), '', 
+                        array('onlytypes' => array('archive', 'document', 'image'))));
+
+        if (isset($CFG->maxbytes)) {
+
+            $name = new lang_string('maximumsubmissionsize', 'assignsubmission_file');
+            $description = new lang_string('configmaxbytes', 'assignsubmission_file');
+
+            $maxbytes = get_config('assignsubmission_file', 'maxbytes');
+            $element = new admin_setting_configselect('assignsubmission_file/maxbytes',
+                                                    $name,
+                                                    $description,
+                                                    $CFG->maxbytes,
+                                                    get_max_upload_sizes($CFG->maxbytes, 0, 0, $maxbytes));
+            $settings->add($element);
+        }
 }
