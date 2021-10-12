@@ -23,7 +23,7 @@
 define('AJAX_SCRIPT', true);
 
 require_once('../../config.php');
-
+global $CFG;
 require_login();
 require_sesskey();
 
@@ -36,28 +36,36 @@ if ( 0 < $_FILES['file']['error'] ) {
 } else {
     $pathparts = pathinfo($_FILES["file"]["name"]);
 
-/*
-    $filepath = $_FILES['myFile']['tmp_name'];
+
+    $filepath = $_FILES['file']['tmp_name'];
     $filesize = filesize($filepath);
     $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
     $filetype = finfo_file($fileinfo, $filepath);
-    if ($filesize === 0) {
-        die("The file is empty.");
-    }
-    if ($filesize > 3145728) { // 3 MB (1 byte * 1024 * 1024 * 3 (for 3 MB))
-        die("The file is too large");
-    }
-    $allowedtypes = [
-       'image/png' => 'png',
-       'image/jpeg' => 'jpg',
-       'image/jpeg' => 'jpeg',
-       'application/pdf' => 'pdf',
-       'application/zip' => 'zip',
+  
 
-    ];
-    if (!in_array($filetype, array_keys($allowedtypes))) {
-        die("File not allowed.");
-    }*/
+    $filetypes = get_config('chatfiles', 'filetypes');
+    $util = new \core_form\filetypes_util();
+    $sets = $util->normalize_file_types($filetypes);
+    $maxbytes = get_config('chatfiles', 'maxbytes');
+    if (!$maxbytes) {
+        $maxbytes = $CFG->maxbytes;
+    }
+
+    if ($filesize === 0) {
+        echo json_encode(array("error" => get_string('error:zero', 'local_chatfiles')));
+        die();
+    }
+    if ($filesize > $maxbytes) { 
+        echo json_encode(array("error" => get_string('error:filesize', 'local_chatfiles')));
+        die();
+    }
+
+    $tmpfilename = "tmp" . mimeinfo_from_type('extension', $filetype);
+    if(!file_extension_in_typegroup($tmpfilename, $sets, true)) {
+        echo json_encode(array("url" => '', "filename" => '', "error" => get_string('error:extension', 'local_chatfiles')));
+        die();
+    }
+       
     \core\antivirus\manager::scan_file($_FILES["file"]["tmp_name"], $_FILES["file"]["name"], true);
 
 

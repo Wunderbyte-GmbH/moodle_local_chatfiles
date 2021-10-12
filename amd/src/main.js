@@ -22,8 +22,14 @@ define(
                 data: form_data,
                 type: 'post',
                 success: function(response){
-                    var textarea = $('[data-region="send-message-txt"]');
+                    var textarea = $('.drawer [data-region="send-message-txt"]');
                     var obj = $.parseJSON( response );
+                    console.log ( obj);
+                    if (obj.error) {
+                        alert(obj.error);
+                        $('#chatfile').val("");
+                        return;
+                    }
                     var file = '<p class="text-success font-italic"><a class="" href="' + obj.url +
                      '"><i class="fa fa-file-o fa-2x pr-2 d-block"></i>' + obj.filename + '</a></p>';
                     textarea.val(file);

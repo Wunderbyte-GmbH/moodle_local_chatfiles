@@ -26,9 +26,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Chatfiles';
-$string['acceptedfiletypes'] = 'Accepted file types';
-$string['maximumsubmissionsize'] = 'Maximum submission size';
+$string['acceptedfiletypes'] = 'Akzeptierte Dateitypen';
+$string['maximumsubmissionsize'] = 'Maximale Dateigröße';
 
-$string['error:extension'] = 'Wrong Extension';
-$string['error:filesize'] = 'File too big';
-$string['error:zero'] = 'File is empty';
+$string['error:extension'] = 'Falsche Dateiendung';
+$string['error:filesize'] = 'Datei zu groß';
+$string['error:zero'] = 'Datei ist leer';

@@ -34,19 +34,18 @@ if ($hassiteconfig) {
     
 
         $settings->add(new admin_setting_filetypes('chatfiles/filetypes',
-                        new lang_string('defaultacceptedfiletypes', 'chatfiles'),
-                        new lang_string('acceptedfiletypes_help', 'chatfiles'), '', 
+                        new lang_string('acceptedfiletypes', 'chatfiles'),
+                        '', '', 
                         array('onlytypes' => array('archive', 'document', 'image'))));
 
         if (isset($CFG->maxbytes)) {
 
-            $name = new lang_string('maximumsubmissionsize', 'assignsubmission_file');
-            $description = new lang_string('configmaxbytes', 'assignsubmission_file');
+            $name = new lang_string('maximumsubmissionsize', 'chatfiles');
 
-            $maxbytes = get_config('assignsubmission_file', 'maxbytes');
-            $element = new admin_setting_configselect('assignsubmission_file/maxbytes',
+            $maxbytes = get_config('chatfiles', 'maxbytes');
+            $element = new admin_setting_configselect('chatfiles/maxbytes',
                                                     $name,
-                                                    $description,
+                                                    '',
                                                     $CFG->maxbytes,
                                                     get_max_upload_sizes($CFG->maxbytes, 0, 0, $maxbytes));
             $settings->add($element);
