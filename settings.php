@@ -30,17 +30,16 @@ if ($hassiteconfig) {
 
         $settings = new admin_settingpage( 'local_chatfiles_settings', 'Chatfiles'); // We ommit the label, so that it does not show the heading.
         $ADMIN->add('localplugins', new admin_category('local_chatfiles', get_string('pluginname', 'local_chatfiles')));
-        $ADMIN->add('local_chatfiles', $settings);
-    
+        $ADMIN->add('localplugins', $settings);
+
 
         $settings->add(new admin_setting_filetypes('chatfiles/filetypes',
-                        new lang_string('acceptedfiletypes', 'chatfiles'),
-                        '', '', 
-                        array('onlytypes' => array('archive', 'document', 'image'))));
+            new lang_string('acceptedfiletypes', 'local_chatfiles'),
+            '', '',array('onlytypes' => array('archive', 'document', 'image'))));
 
         if (isset($CFG->maxbytes)) {
 
-            $name = new lang_string('maximumsubmissionsize', 'chatfiles');
+            $name = get_string('maximumsubmissionsize', 'local_chatfiles');
 
             $maxbytes = get_config('chatfiles', 'maxbytes');
             $element = new admin_setting_configselect('chatfiles/maxbytes',
