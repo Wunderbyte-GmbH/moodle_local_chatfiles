@@ -23,14 +23,18 @@
 define('AJAX_SCRIPT', true);
 
 require_once('../../config.php');
-global $CFG;
+global $CFG, $USER;
 require_login();
 require_sesskey();
 
 
 $tempdir = make_temp_directory('chatfiles/');
-
-
+$tousername = $_POST['name'];
+$username = $USER->firstname. " " .$USER->lastname;
+if ($username == $tousername) {
+    echo json_encode(array("error" => get_string('error:sameuser', 'local_chatfiles')));
+    die();
+}
 if ( 0 < $_FILES['file']['error'] ) {
     echo 'Error: ' . $_FILES['file']['error'] . '<br>';
 } else {
@@ -73,6 +77,16 @@ if ( 0 < $_FILES['file']['error'] ) {
     $filename = $pathparts['filename'].'_'.time().'.'.$pathparts['extension'];
     $dlurl = new moodle_url('/pluginfile.php/1/local_chatfiles/chat/') . $filename . '?forcedownload=1';
     move_uploaded_file($_FILES['file']['tmp_name'], $tempdir . $filename);
+    $event = \core\event\message_sent::create(array(
+        'objectid' => 3,
+        'userid' => 1,
+        'context'  => context_system::instance(),
+        'relateduserid' => 2,
+        'other' => array(
+            'courseid' => 4
+        )
+    ));
+    $event->trigger();
 }
 
 echo json_encode(array("url" => $dlurl, "filename" => $filename));

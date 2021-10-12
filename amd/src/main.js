@@ -13,6 +13,8 @@ define(
             if (!file_data) { return; }
             var form_data = new FormData();
             form_data.append('file', file_data);
+            var username = $('[data-region="view-conversation"] [data-region="header-content"] strong.text-truncate').text()
+            form_data.append('name', username);
             $.ajax({
                 url: M.cfg.wwwroot + '/local/chatfiles/ajax.php?sesskey=' + M.cfg.sesskey,
                 dataType: 'text',

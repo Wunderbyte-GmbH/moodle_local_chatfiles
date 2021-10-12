@@ -29,6 +29,7 @@ $string['pluginname'] = 'Chatfiles';
 $string['acceptedfiletypes'] = 'Accepted file types';
 $string['maximumsubmissionsize'] = 'Maximum submission size';
 
+$string['error:sameuser'] = 'Files can only be sent between different users';
 $string['error:extension'] = 'Wrong Extension';
 $string['error:filesize'] = 'File too big';
 $string['error:zero'] = 'File is empty';
