@@ -46,7 +46,7 @@ if ( 0 < $_FILES['file']['error'] ) {
     $filesize = filesize($filepath);
     $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
     $filetype = finfo_file($fileinfo, $filepath);
-  
+
 
     $filetypes = get_config('chatfiles', 'filetypes');
     $util = new \core_form\filetypes_util();
@@ -60,17 +60,17 @@ if ( 0 < $_FILES['file']['error'] ) {
         echo json_encode(array("error" => get_string('error:zero', 'local_chatfiles')));
         die();
     }
-    if ($filesize > $maxbytes) { 
+    if ($filesize > $maxbytes) {
         echo json_encode(array("error" => get_string('error:filesize', 'local_chatfiles')));
         die();
     }
 
     $tmpfilename = "tmp" . mimeinfo_from_type('extension', $filetype);
-    if(!file_extension_in_typegroup($tmpfilename, $sets, true)) {
+    if (!file_extension_in_typegroup($tmpfilename, $sets, true)) {
         echo json_encode(array("url" => '', "filename" => '', "error" => get_string('error:extension', 'local_chatfiles')));
         die();
     }
-       
+ 
     \core\antivirus\manager::scan_file($_FILES["file"]["tmp_name"], $_FILES["file"]["name"], true);
 
 

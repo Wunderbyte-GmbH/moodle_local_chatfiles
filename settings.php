@@ -28,25 +28,24 @@ defined('MOODLE_INTERNAL') || die();
 if ($hassiteconfig) {
     // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
 
-        $settings = new admin_settingpage( 'local_chatfiles_settings', 'Chatfiles'); // We ommit the label, so that it does not show the heading.
-        $ADMIN->add('localplugins', new admin_category('local_chatfiles', get_string('pluginname', 'local_chatfiles')));
-        $ADMIN->add('localplugins', $settings);
+    $settings = new admin_settingpage( 'local_chatfiles_settings', 'Chatfiles'); // We ommit the label, so that it does not show the heading.
+    $ADMIN->add('localplugins', new admin_category('local_chatfiles', get_string('pluginname', 'local_chatfiles')));
+    $ADMIN->add('localplugins', $settings);
 
 
-        $settings->add(new admin_setting_filetypes('chatfiles/filetypes',
-            new lang_string('acceptedfiletypes', 'local_chatfiles'),
-            '', '',array('onlytypes' => array('archive', 'document', 'image'))));
+    $settings->add(new admin_setting_filetypes('chatfiles/filetypes',
+        new lang_string('acceptedfiletypes', 'local_chatfiles'),
+        '', '', array('onlytypes' => array('archive', 'document', 'image'))));
 
-        if (isset($CFG->maxbytes)) {
+    if (isset($CFG->maxbytes)) {
+        $name = get_string('maximumsubmissionsize', 'local_chatfiles');
 
-            $name = get_string('maximumsubmissionsize', 'local_chatfiles');
-
-            $maxbytes = get_config('chatfiles', 'maxbytes');
-            $element = new admin_setting_configselect('chatfiles/maxbytes',
-                                                    $name,
-                                                    '',
-                                                    $CFG->maxbytes,
-                                                    get_max_upload_sizes($CFG->maxbytes, 0, 0, $maxbytes));
-            $settings->add($element);
-        }
+        $maxbytes = get_config('chatfiles', 'maxbytes');
+        $element = new admin_setting_configselect('chatfiles/maxbytes',
+                                                $name,
+                                                '',
+                                                $CFG->maxbytes,
+                                                get_max_upload_sizes($CFG->maxbytes, 0, 0, $maxbytes));
+        $settings->add($element);
+    }
 }
