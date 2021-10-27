@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Handles file checks and uploads from messaging 
+ * Handles file checks and uploads from messaging
  *
  * @package local_chatfiles
  * @category external

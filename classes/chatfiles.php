@@ -42,7 +42,7 @@ class chatfiles {
     public function __construct() {
     }
     /**
-     * Copy File from temporary Folder to every private user Folder
+     * Copy File from temporary Folder to pluginfile Folder
      * @param string $userid if of user
      * @param string $conversationid id of the conversation
      * @param string $filename name of the file
