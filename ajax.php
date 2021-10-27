@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Handles file checks and uploads from messaging 
+ * 
  * @package local_chatfiles
  * @category external
  * @copyright 2021 Wunderbyte Gmbh <info@wunderbyte.at>
@@ -70,7 +72,7 @@ if ( 0 < $_FILES['file']['error'] ) {
         echo json_encode(array("url" => '', "filename" => '', "error" => get_string('error:extension', 'local_chatfiles')));
         die();
     }
- 
+
     \core\antivirus\manager::scan_file($_FILES["file"]["tmp_name"], $_FILES["file"]["name"], true);
 
 

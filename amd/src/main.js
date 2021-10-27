@@ -36,7 +36,7 @@ define(
                 type: 'post',
                 success: function(response) {
                     var textarea;
-                    var obj = $.parseJSON( response );
+                    var obj = $.parseJSON(response);
                     if (obj.drawer == 1) {
                         textarea = $('[id^=drawer] [data-region="send-message-txt"]');
                     } else if (obj.drawer == 2) {

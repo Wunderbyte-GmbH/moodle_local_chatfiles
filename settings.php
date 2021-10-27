@@ -26,9 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
-    // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
-
-    $settings = new admin_settingpage( 'local_chatfiles_settings', 'Chatfiles'); // We ommit the label, so that it does not show the heading.
+    $settings = new admin_settingpage( 'local_chatfiles_settings', 'Chatfiles');
     $ADMIN->add('localplugins', new admin_category('local_chatfiles', get_string('pluginname', 'local_chatfiles')));
     $ADMIN->add('localplugins', $settings);
 

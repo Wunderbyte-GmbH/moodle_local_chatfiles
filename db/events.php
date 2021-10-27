@@ -15,8 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Add event handlers for chatfiles
  * @package    local_chatfiles
- * @copyright  2020 Center for Learningmanagement (https://www.lernmanagement.at)
+ * @copyright  2021 Wunderbyte GmbH
  * @author     Thomas Winkler
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

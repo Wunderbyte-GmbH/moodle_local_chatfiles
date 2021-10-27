@@ -16,16 +16,16 @@
 
 /**
  * @package    local_chatfiles
- * @copyright 2021 Wunderbyte Gmbh <info@wunderbyte.at>
+ * @copyright  2021 Wunderbyte GmbH
+ * @author     Thomas Winkler
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
 
 /**
- *
- * @package  local_chatfles
- * @category files
+ * Serves chatfiles files.
+ * 
  * @param stdClass $course course object
  * @param stdClass $cm course module object
  * @param stdClass $context context object
