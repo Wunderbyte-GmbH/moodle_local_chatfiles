@@ -30,6 +30,7 @@ require_sesskey();
 
 $tempdir = make_temp_directory('chatfiles/');
 $tousername = $_POST['name'];
+$drawer = $_POST['drawer'];
 $username = $USER->firstname. " " .$USER->lastname;
 if ($username == $tousername) {
     echo json_encode(array("error" => get_string('error:sameuser', 'local_chatfiles')));
@@ -89,4 +90,4 @@ if ( 0 < $_FILES['file']['error'] ) {
     $event->trigger();
 }
 
-echo json_encode(array("url" => $dlurl, "filename" => $filename));
+echo json_encode(array("url" => $dlurl, "filename" => $filename, "drawer" => $drawer));

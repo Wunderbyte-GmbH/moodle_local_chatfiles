@@ -26,6 +26,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_chatfiles';
 $plugin->release = '1.0.0';
-$plugin->version = 2021101201;
+$plugin->version = 2021101205;
 $plugin->requires = 2020061500;
 $plugin->maturity = MATURITY_STABLE;
