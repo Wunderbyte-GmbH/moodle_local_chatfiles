@@ -16,7 +16,7 @@
 
 /**
  * The main class for the chatfiles plugin
- * 
+ *
  * @package local_chatfiles
  * @copyright 2021 Wunderbyte Gmbh <info@wunderbyte.at>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -43,6 +43,9 @@ class chatfiles {
     }
     /**
      * Copy File from temporary Folder to every private user Folder
+     * @param string $userid if of user
+     * @param string $conversationid id of the conversation
+     * @param string $filename name of the file
      */
     public static function create_chatfile($userid, $conversationid, $filename) {
         global $CFG;
@@ -56,6 +59,7 @@ class chatfiles {
     }
     /**
      * Delete File from temporary Folder to every private user Folder
+     * @param string $filename name of the file
      */
     public static function delete_chatfile($filename) {
         $fs = get_file_storage();

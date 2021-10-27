@@ -16,7 +16,7 @@
 
 /**
  * Event observers.
- * 
+ *
  * @package local_chatfiles
  * @copyright 2021 Wunderbyte Gmbh <info@wunderbyte.at>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,6 +26,11 @@ namespace local_chatfiles;
 
 defined('MOODLE_INTERNAL') || die;
 
+/**
+ * An event observer.
+ * @copyright  2021 Wunderbyte GmbH
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class observer {
     public static function event($event) {
         global $DB, $USER;

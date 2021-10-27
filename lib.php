@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Libary file for chatfiles
+ *
  * @package    local_chatfiles
  * @copyright  2021 Wunderbyte GmbH
  * @author     Thomas Winkler
@@ -25,7 +27,7 @@ defined('MOODLE_INTERNAL') || die;
 
 /**
  * Serves chatfiles files.
- * 
+ *
  * @param stdClass $course course object
  * @param stdClass $cm course module object
  * @param stdClass $context context object

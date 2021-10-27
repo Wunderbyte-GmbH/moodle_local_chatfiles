@@ -16,7 +16,7 @@
 
 /**
  * Handles file checks and uploads from messaging 
- * 
+ *
  * @package local_chatfiles
  * @category external
  * @copyright 2021 Wunderbyte Gmbh <info@wunderbyte.at>
