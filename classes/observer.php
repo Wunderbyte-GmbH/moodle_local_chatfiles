@@ -33,10 +33,10 @@ defined('MOODLE_INTERNAL') || die;
  */
 class observer {
     /**
-	 * Checks if message_send Event has files
-	 *
-	 * @param object $event
-	 */
+     * Checks if message_send Event has files
+     *
+     * @param object $event
+     */
     public static function event($event) {
         global $DB, $USER;
         $entry = (object)$event->get_data();
